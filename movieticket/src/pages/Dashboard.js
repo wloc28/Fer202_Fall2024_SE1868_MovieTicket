@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Table, Button, Form, Modal, Image } from 'react-bootstrap';
+import { Container, Table, Button, Form, Modal, Image } from 'react-bootstrap';
 import { getMovies, createMovie, updateMovie, deleteMovie } from '../api/movie-api';
 import DashboardHeader from '../components/DashboardHeader';
 
@@ -44,9 +44,12 @@ export default function Dashboard() {
   };
 
   const handleDelete = async (id) => {
+    const isConfirmed = window.confirm("Are you sure you want to delete movie?");
+  if (isConfirmed) {
     await deleteMovie(id);
     const moviesData = await getMovies();
     setMovies(moviesData);
+  }
   };
 
   return (

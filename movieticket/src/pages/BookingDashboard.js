@@ -33,29 +33,21 @@ export default function BookingDashboard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (currentBooking.seats <= 0) {
-      alert("The number of seats must be greater than 0.");
-      return;
-    }
-
     if (currentBooking.id) {
       await updateBooking(currentBooking.id, currentBooking);
     } else {
       await createBooking(currentBooking);
     }
-
     const bookingsData = await getBookings();
     setBookings(bookingsData);
     handleCloseModal();
-};
-const handleDelete = async (id) => {
-  const isConfirmed = window.confirm("Are you sure you want to delete this reservation?");
-  if (isConfirmed) {
+  };
+
+  const handleDelete = async (id) => {
     await deleteBooking(id);
     const bookingsData = await getBookings();
     setBookings(bookingsData);
-  }
-};
+  };
 
   return (
     <div className='container'>

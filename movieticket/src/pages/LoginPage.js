@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../api/user-api"; // Ensure this is correctly implemented
+import { login } from "../api/user-api";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { toast } from "react-toastify";
@@ -13,20 +13,16 @@ const LoginPage = () => {
   const handleLogin = async () => {
     try {
       const credentials = { email, password };
-      console.log("Attempting login with credentials:", credentials); // Debugging log
       const response = await login(credentials);
-      console.log("Login response:", response); // Debugging log
 
       if (response && response.email && response.role && response.id) {
-        // Storing user data in localStorage
         localStorage.setItem("email", response.email);
         localStorage.setItem("role", response.role);
         localStorage.setItem("userId", response.id);
 
-        // Successful login
         toast.success("Login successful!");
 
-        // Redirecting based on role
+        // Redirect based on role
         if (response.role === "admin") {
           navigate("/admin");
         } else if (response.role === "manager") {
@@ -40,7 +36,7 @@ const LoginPage = () => {
         throw new Error("Invalid login response");
       }
     } catch (error) {
-      console.error("Login failed:", error.response || error.message); // Debugging log
+      console.error("Login failed:", error.response || error.message);
       toast.error("Login failed. Please check your credentials.");
     }
   };

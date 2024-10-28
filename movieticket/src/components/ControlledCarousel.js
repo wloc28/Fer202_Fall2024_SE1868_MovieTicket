@@ -11,26 +11,21 @@ function ControlledCarousel() {
   return (
     <Carousel activeIndex={index} onSelect={handleSelect}>
       <Carousel.Item className='rounded'>
-        <img src='https://samfillingham.com/wp-content/uploads/2020/05/2200-1000px-banner-Muna-1310x595.jpg' alt='First slide' className='rounded' />
+        <img src='https://techbiz.vn/attachments/1671172015866-jpeg.153/' alt='First slide' className='rounded' />
         <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h3>Avatar 2: Dòng chảy của nước</h3>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item className='rounded'>
-        <img src='https://samfillingham.com/wp-content/uploads/2020/05/2200-1000px-banner-Muna-1310x595.jpg' alt='First slide' className='rounded' />
+        <img src='https://www.vietnam.vn/daknong/wp-content/uploads/2024/10/Review-phim-Venom-3-Keo-cuoi.vn-139269124445442048-2024-9-14-_photo-1726305310973-17263053111221748361394-172632189.jpeg' alt='First slide' className='rounded' />
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3>Venom :Hồi kết</h3>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item className='rounded'>
-        <img src='https://samfillingham.com/wp-content/uploads/2020/05/2200-1000px-banner-Muna-1310x595.jpg' alt='First slide' className='rounded' />
+        <img src='https://cellphones.com.vn/sforum/wp-content/uploads/2023/05/phim-chieu-rap-1.jpg' alt='First slide' className='rounded' />
         <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
+          <h3>Gặp lại chị bầu</h3>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

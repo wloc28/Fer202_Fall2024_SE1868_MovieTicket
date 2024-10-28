@@ -30,7 +30,7 @@ export default function Header() {
                     <Navbar.Brand href="/" className="
                     d-flex align-items-center text-dark text-decoration
                     ">
-                        <img src="https://png.pngtree.com/element_our/20190603/ourlarge/pngtree-movie-board-icon-image_1455346.jpg" alt="Logo" width="50" height="50" className="d-inline-block align-text-top" />
+                        <img src="https://pngfre.com/wp-content/uploads/orange-69-300x300.png" alt="Logo" width="50" height="50" className="d-inline-block align-text-top" />
                         {' '}
                         <span className="fs-4 
                         ms-2 fw-bold

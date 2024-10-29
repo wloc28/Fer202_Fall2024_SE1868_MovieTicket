@@ -1,6 +1,6 @@
 import axios from "axios";
 import bcrypt from "bcryptjs";
-const api = "http://localhost:9998/users";
+const api = "http://localhost:9999/users";
 
 //login
 export const login = async (user) => {

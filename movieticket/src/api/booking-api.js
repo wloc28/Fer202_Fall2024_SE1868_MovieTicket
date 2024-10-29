@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:9998/bookings";
+const baseUrl = "http://localhost:9999/bookings";
 
 export const getBookings = async () => {
     try {

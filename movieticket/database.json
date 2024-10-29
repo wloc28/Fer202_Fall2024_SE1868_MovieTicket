@@ -134,22 +134,6 @@
   ],
   "bookings": [
     {
-      "id": "364",
-      "userId": "6",
-      "movieId": "542",
-      "bookingDate": "2024-10-26",
-      "bookingTime": "15:27",
-      "seats": "9"
-    },
-    {
-      "id": "44",
-      "userId": "7",
-      "movieId": "7",
-      "bookingDate": "2024-10-27",
-      "bookingTime": "15:32",
-      "seats": "25"
-    },
-    {
       "id": "436",
       "userId": "6",
       "movieId": "1",
@@ -158,12 +142,60 @@
       "seats": "0"
     },
     {
-      "id": "69",
+      "id": "214",
       "userId": "7",
-      "movieId": "4",
-      "bookingDate": "2024-10-27",
-      "bookingTime": "15:43",
+      "movieId": "1",
+      "bookingDate": "2024-10-28",
+      "bookingTime": "04:12",
       "seats": 1
+    },
+    {
+      "id": "510",
+      "userId": "7",
+      "movieId": "1",
+      "bookingDate": "2024-10-28",
+      "bookingTime": "04:13",
+      "seats": 1
+    },
+    {
+      "id": "324",
+      "userId": "7",
+      "movieId": "1",
+      "bookingDate": "2024-10-28",
+      "bookingTime": "04:15",
+      "seats": "20"
+    },
+    {
+      "id": "456",
+      "userId": "7",
+      "movieId": "2",
+      "bookingDate": "2024-10-28",
+      "bookingTime": "04:17",
+      "seats": 1
+    },
+    {
+      "id": "902",
+      "userId": "7",
+      "movieId": "1",
+      "bookingDate": "2024-10-03",
+      "bookingTime": "11:26",
+      "seats": 1
+    },
+    {
+      "id": "925",
+      "userId": "7",
+      "movieId": "2",
+      "bookingDate": "2024-10-28",
+      "bookingTime": "11:36",
+      "seats": 1
+    },
+    {
+      "id": "5",
+      "userId": "7",
+      "movieId": "1",
+      "bookingDate": "2024-10-30",
+      "bookingTime": "20:48",
+      "seats": "4"
     }
   ]
 }

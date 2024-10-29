@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Table, Button, Form, Modal } from 'react-bootstrap';
 import { getBookings, createBooking, updateBooking, deleteBooking } from '../api/booking-api';
+import { getUsers } from '../api/user-api';
+import { getMovies } from '../api/movie-api';
 import DashboardHeader from '../components/DashboardHeader';
 
 export default function BookingDashboard() {
   const [bookings, setBookings] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [currentBooking, setCurrentBooking] = useState({ id: '', userId: '', movieId: '', bookingDate: '', bookingTime: '', seats: '' });
 
   useEffect(() => {
-    const fetchBookings = async () => {
+    const fetchData = async () => {
       const bookingsData = await getBookings();
+      const usersData = await getUsers();
+      const moviesData = await getMovies();
       setBookings(bookingsData);
+      setUsers(usersData);
+      setMovies(moviesData);
     };
 
-    fetchBookings();
+    fetchData();
   }, []);
 
   const handleShowModal = (booking = { id: '', userId: '', movieId: '', bookingDate: '', bookingTime: '', seats: '' }) => {
@@ -33,20 +41,29 @@ export default function BookingDashboard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (currentBooking.seats <= 0) {
+      alert("The number of seats must be greater than 0.");
+      return;
+    }
+
     if (currentBooking.id) {
       await updateBooking(currentBooking.id, currentBooking);
     } else {
       await createBooking(currentBooking);
     }
+
     const bookingsData = await getBookings();
     setBookings(bookingsData);
     handleCloseModal();
-  };
+};
 
   const handleDelete = async (id) => {
+    const isConfirmed = window.confirm("Are you sure you want to delete booking?");
+    if (isConfirmed) {
     await deleteBooking(id);
     const bookingsData = await getBookings();
     setBookings(bookingsData);
+    }
   };
 
   return (
@@ -58,8 +75,8 @@ export default function BookingDashboard() {
         <Table striped bordered hover className="mt-4">
           <thead>
             <tr>
-              <th>User ID</th>
-              <th>Movie ID</th>
+              <th>User Name</th>
+              <th>Movie Name</th>
               <th>Booking Date</th>
               <th>Booking Time</th>
               <th>Seats</th>
@@ -67,19 +84,23 @@ export default function BookingDashboard() {
             </tr>
           </thead>
           <tbody>
-            {bookings.map((booking) => (
-              <tr key={booking.id}>
-                <td>{booking.userId}</td>
-                <td>{booking.movieId}</td>
-                <td>{booking.bookingDate}</td>
-                <td>{booking.bookingTime}</td>
-                <td>{booking.seats}</td>
-                <td>
-                  <Button variant="warning" onClick={() => handleShowModal(booking)}>Edit</Button>
-                  <Button variant="danger" onClick={() => handleDelete(booking.id)}>Delete</Button>
-                </td>
-              </tr>
-            ))}
+            {bookings.map((booking) => {
+              const user = users.find(u => u.id === booking.userId) || {};
+              const movie = movies.find(m => m.id === booking.movieId) || {};
+              return (
+                <tr key={booking.id}>
+                  <td>{user.name}</td>
+                  <td>{movie.name}</td>
+                  <td>{booking.bookingDate}</td>
+                  <td>{booking.bookingTime}</td>
+                  <td>{booking.seats}</td>
+                  <td>
+                    <Button variant="warning" onClick={() => handleShowModal(booking)}>Edit</Button>
+                    <Button variant="danger" onClick={() => handleDelete(booking.id)}>Delete</Button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </Table>
 
@@ -90,24 +111,22 @@ export default function BookingDashboard() {
           <Modal.Body>
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3">
-                <Form.Label>User ID</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="userId"
-                  value={currentBooking.userId}
-                  onChange={handleChange}
-                  required
-                />
+                <Form.Label>User</Form.Label>
+                <Form.Control as="select" name="userId" value={currentBooking.userId} onChange={handleChange} required>
+                  <option value="">Select User</option>
+                  {users.map(user => (
+                    <option key={user.id} value={user.id}>{user.name}</option>
+                  ))}
+                </Form.Control>
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Movie ID</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="movieId"
-                  value={currentBooking.movieId}
-                  onChange={handleChange}
-                  required
-                />
+                <Form.Label>Movie</Form.Label>
+                <Form.Control as="select" name="movieId" value={currentBooking.movieId} onChange={handleChange} required>
+                  <option value="">Select Movie</option>
+                  {movies.map(movie => (
+                    <option key={movie.id} value={movie.id}>{movie.name}</option>
+                  ))}
+                </Form.Control>
               </Form.Group>
               <Form.Group className="mb-3">
                 <Form.Label>Booking Date</Form.Label>

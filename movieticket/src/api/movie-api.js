@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:9998/movies';
+const baseUrl = 'http://localhost:9999/movies';
 
 // Get all movies
 export const getMovies = async () => {
